@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">calculadora</string>
+    <string name="botaoLimpar">C</string>
+    <string name="operacaoDivisao">/</string>
+    <string name="digitoSete">7</string>
+    <string name="operacaoMultiplicacao">x</string>
+    <string name="digitoNove">9</string>
+    <string name="digitoOito">8</string>
+    <string name="digitoQuatro">4</string>
+    <string name="digitoCinco">5</string>
+    <string name="digitoSeis">6</string>
+    <string name="operacaoSubtracao">-</string>
+    <string name="digitoUm">1</string>
+    <string name="digitoDois">2</string>
+    <string name="digitoTres">3</string>
+    <string name="operacaoAdicao">+</string>
+    <string name="digitoDecimal">.</string>
+    <string name="digitoZero">0</string>
 </resources>
