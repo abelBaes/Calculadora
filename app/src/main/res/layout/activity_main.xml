@@ -155,15 +155,18 @@
             style="@style/Numbers_Button"
             android:text="@string/digitoZero" />
 
-        <TextView
+        <ImageView
             android:id="@+id/botaoRemocao"
             style="@style/Numbers_Button"
-            android:text="" />
+            android:src="@drawable/backspace"
+            android:scaleType="fitCenter"
+            android:scaleX="0.3"
+            android:scaleY="0.3"/>
 
         <TextView
-            android:id="@+id/operacaoAdicao"
+            android:id="@+id/operacaoResultado"
             style="@style/Operators_Button"
-            android:text="@string/operacaoAdicao"/>
+            android:text="@string/operacaoResultado"/>
 
 
 

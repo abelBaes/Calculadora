@@ -16,4 +16,5 @@
     <string name="operacaoAdicao">+</string>
     <string name="digitoDecimal">.</string>
     <string name="digitoZero">0</string>
+    <string name="operacaoResultado">=</string>
 </resources>
