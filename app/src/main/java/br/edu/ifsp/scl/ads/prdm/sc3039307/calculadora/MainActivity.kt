@@ -26,12 +26,41 @@ class MainActivity : AppCompatActivity() {
             digitoOito.setOnClickListener { expressaoMatematica.append("8")}
             digitoNove.setOnClickListener { expressaoMatematica.append("9")}
 
+            operacaoAdicao.setOnClickListener { operatorEvent('+') }
+            operacaoSubtracao.setOnClickListener { operatorEvent('-') }
+            operacaoMultiplicacao.setOnClickListener { operatorEvent('*') }
+            operacaoDivisao.setOnClickListener { operatorEvent('/') }
+
 
         }
 
     }
 
     fun operatorEvent(operator : Char){
+        val actualExpression = amb.expressaoMatematica.text.toString()
+
+        val validOperator = when (operator){
+            '+','-','*','/' -> operator
+            else -> ""
+        }
+
+        if(validOperator == "") return
+
+        if(actualExpression.isEmpty()){
+            if(operator == '-') amb.expressaoMatematica.append("-")
+            return
+        }
+
+        if(actualExpression.length == 1 && actualExpression[0] == '-' && validOperator == '-') return
+
+        val lastChar = actualExpression.last()
+
+        if(lastChar in listOf('+','-','*','/')){
+            amb.expressaoMatematica.text = actualExpression.dropLast(1) + operator
+            return
+        }
+
+        amb.expressaoMatematica.text = actualExpression + operator;
 
     }
 
