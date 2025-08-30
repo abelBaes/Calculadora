@@ -5,11 +5,34 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.edu.ifsp.scl.ads.prdm.sc3039307.calculadora.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private val amb: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater)}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        with(amb){
+            setContentView(root)
+            digitoZero.setOnClickListener { expressaoMatematica.append("0")}
+            digitoUm.setOnClickListener { expressaoMatematica.append("1")}
+            digitoDois.setOnClickListener { expressaoMatematica.append("2")}
+            digitoTres.setOnClickListener { expressaoMatematica.append("3")}
+            digitoQuatro.setOnClickListener { expressaoMatematica.append("4")}
+            digitoCinco.setOnClickListener { expressaoMatematica.append("5")}
+            digitoSeis.setOnClickListener { expressaoMatematica.append("6")}
+            digitoSete.setOnClickListener { expressaoMatematica.append("7")}
+            digitoOito.setOnClickListener { expressaoMatematica.append("8")}
+            digitoNove.setOnClickListener { expressaoMatematica.append("9")}
+
+
+        }
+
     }
+
+    fun operatorEvent(operator : Char){
+
+    }
+
 }
