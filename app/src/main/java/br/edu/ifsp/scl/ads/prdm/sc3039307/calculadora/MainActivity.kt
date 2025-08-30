@@ -1,11 +1,13 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039307.calculadora
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3039307.calculadora.databinding.ActivityMainBinding
+import org.mariuszgromada.math.mxparser.Expression
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater)}
@@ -25,12 +27,16 @@ class MainActivity : AppCompatActivity() {
             digitoSete.setOnClickListener { expressaoMatematica.append("7")}
             digitoOito.setOnClickListener { expressaoMatematica.append("8")}
             digitoNove.setOnClickListener { expressaoMatematica.append("9")}
+            decimal.setOnClickListener { expressaoMatematica.append(".") }
 
-            operacaoAdicao.setOnClickListener { operatorEvent('+') }
-            operacaoSubtracao.setOnClickListener { operatorEvent('-') }
-            operacaoMultiplicacao.setOnClickListener { operatorEvent('*') }
-            operacaoDivisao.setOnClickListener { operatorEvent('/') }
+            operacaoAdicao.setOnClickListener {operatorEvent('+')}
+            operacaoSubtracao.setOnClickListener {operatorEvent('-')}
+            operacaoMultiplicacao.setOnClickListener {operatorEvent('*')}
+            operacaoDivisao.setOnClickListener {operatorEvent('/')}
 
+            operacaoResultado.setOnClickListener { getResult() }
+            botaoRemocao.setOnClickListener { expressaoMatematica.text = expressaoMatematica.text.dropLast(1)}
+            limparBotao.setOnClickListener { expressaoMatematica.text = ""}
 
         }
 
@@ -61,6 +67,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         amb.expressaoMatematica.text = actualExpression + operator;
+
+    }
+
+    fun getResult(){
+        val actualExpression = amb.expressaoMatematica.text.toString()
+
+        if (Regex("/0\\b").containsMatchIn(actualExpression)) {
+            Toast.makeText(this@MainActivity, "Erro: divisão por zero", Toast.LENGTH_LONG).show()
+            amb.expressaoMatematica.text = ""
+            return
+        }
+
+        val resultadoCalculado = Expression(actualExpression).calculate()
+        if(resultadoCalculado.isNaN()){
+            Toast.makeText(this@MainActivity, "Erro: ocorreu um erro no calculo do resultado", Toast.LENGTH_LONG).show()
+            amb.expressaoMatematica.text = ""
+            return
+        }
+
+        amb.expressaoMatematica.text = resultadoCalculado.toString()
 
     }
 
